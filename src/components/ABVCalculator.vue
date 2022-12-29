@@ -25,6 +25,19 @@
         ></v-select>
       </v-col>
     </v-row>
+    <v-row v-if="beerSize === 'Custom'" justify="center">
+      <v-col class="v-col-6">
+        <v-text-field
+          type="number"
+          min="0"
+          v-model.number="customSize"
+          label="Custom Size"
+          variant="outlined"
+          suffix="ml"
+          persistent-hint
+        ></v-text-field>
+      </v-col>
+    </v-row>
 
     <v-divider></v-divider>
 
@@ -53,16 +66,22 @@ const beerSizes = {
   Howler: 946.3,
   Jug: 1140,
   Growler: 1892.7,
+  Custom: 0,
 } as const;
 type BeerSize = keyof typeof beerSizes;
 const beerSizeOptions = Object.entries(beerSizes).map(([name, size]) => {
-  return { title: `${name} (${size}ml)`, value: name };
+  return {
+    title: name === 'Custom' ? 'Custom' : `${name} (${size}ml)`,
+    value: name,
+  };
 });
-
 const abv = ref<number>(4.5);
+const customSize = ref<number>(330);
 const beerSize = ref<BeerSize>('Pint');
 const computedCalories = computed(() => {
-  const sizeInOz = beerSizes[beerSize.value] / 29.5735;
+  const size_ml =
+    beerSize.value === 'Custom' ? customSize.value : beerSizes[beerSize.value];
+  const sizeInOz = size_ml / 29.5735;
   return abv.value * 2.5 * sizeInOz;
 });
 </script>

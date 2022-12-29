@@ -2,6 +2,8 @@
 
 Small webapp to estimate the calories in a beer given either it's ABV or it's Specific Gravity
 
+Try it at [http://beer.lbat.ch/](http://beer.lbat.ch/)
+
 ## Calculations
 
 ### Simple estimate from ABV

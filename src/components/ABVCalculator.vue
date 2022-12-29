@@ -44,11 +44,15 @@ import { ref, computed } from 'vue';
 const beerSizes = {
   Pony: 140,
   'Pot/Middy': 285,
+  'Stubby/Can': 375,
   Schooner: 425,
   'US Pint': 473,
   'UK Pint': 568,
+  'Long Neck': 750,
   Pint: 570,
+  Howler: 946.3,
   Jug: 1140,
+  Growler: 1892.7,
 } as const;
 type BeerSize = keyof typeof beerSizes;
 const beerSizeOptions = Object.entries(beerSizes).map(([name, size]) => {

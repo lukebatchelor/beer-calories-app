@@ -51,3 +51,10 @@ The more accurate formula (especially for higher ABV beers) is
 ```
 ABV = (76.08 * (Original_Gravity-Final_Gravity) / (1.775-Original_Gravity)) * (Final_Gravity / 0.794)
 ```
+
+## Credits
+
+Formulas compiled from:
+
+- [brewersfriend.com](https://www.brewersfriend.com/2011/06/16/alcohol-by-volume-calculator-updated/)
+- [homebrewacademy.com](https://homebrewacademy.com/beer-calories-calculator/)

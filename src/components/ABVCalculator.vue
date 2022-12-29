@@ -11,6 +11,7 @@
           v-model.number="abv"
           label="ABV"
           variant="outlined"
+          step="0.1"
           suffix="%"
           persistent-hint
         ></v-text-field>
@@ -33,6 +34,7 @@
           v-model.number="customSize"
           label="Custom Size"
           variant="outlined"
+          step="1"
           suffix="ml"
           persistent-hint
         ></v-text-field>

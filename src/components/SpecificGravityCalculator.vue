@@ -113,7 +113,7 @@ CalsFromCarbs = 3550 * FG * ((0.1808 * OG) + (0.8192 * FG) – 1.0004)
   ).toFixed(3)}) – 1.0004)
   = ${calsFromCarbs.toFixed(3)}kcal
 
-TotalCals = CalsFromAlcohol + CaloriesFromCarbs
+TotalCals = CalsFromAlcohol + CalsFromCarbs
   = ${calsFromAlc.toFixed(3)} + ${calsFromCarbs.toFixed(3)}
   = ${(calsFromAlc + calsFromCarbs).toFixed(3)}kcal  
   `.trim();

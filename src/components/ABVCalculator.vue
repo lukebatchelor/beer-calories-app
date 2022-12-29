@@ -49,6 +49,19 @@
         </div>
       </v-col>
     </v-row>
+
+    <v-divider class="my-2"></v-divider>
+    <v-expansion-panels>
+      <v-expansion-panel title="Calculations">
+        <v-expansion-panel-text>
+          <pre style="overflow-x: scroll">{{ calculationText }}</pre>
+          <p class="text-caption">
+            Note: In between steps are shown rounded for brevity but are not
+            actually rounded until the end
+          </p>
+        </v-expansion-panel-text>
+      </v-expansion-panel>
+    </v-expansion-panels>
   </v-container>
 </template>
 <script setup lang="ts">
@@ -83,5 +96,21 @@ const computedCalories = computed(() => {
     beerSize.value === 'Custom' ? customSize.value : beerSizes[beerSize.value];
   const sizeInOz = size_ml / 29.5735;
   return abv.value * 2.5 * sizeInOz;
+});
+const calculationText = computed(() => {
+  const size_ml =
+    beerSize.value === 'Custom' ? customSize.value : beerSizes[beerSize.value];
+  const sizeInOz = size_ml / 29.5735;
+  const abvVal = abv.value;
+  return `
+  1 fl oz = 29.5735ml
+  
+BeerSizeInOz = ${size_ml}ml / 29.5735
+  = ${sizeInOz.toFixed(2)} Oz
+
+BeerCalories = ABV x 2.5 x BeerSizeInOz
+  = ${abvVal} * 2.5 * ${sizeInOz.toFixed(2)}
+  = ${(abv.value * 2.5 * sizeInOz).toFixed(2)}kcal
+  `.trim();
 });
 </script>

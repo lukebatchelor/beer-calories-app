@@ -1,19 +1,53 @@
 # beer-calories-app
 
+Small webapp to estimate the calories in a beer given either it's ABV or it's Specific Gravity
+
+## Calculations
+
+### Simple estimate from ABV
+
+```
 Beer calories = ABV% x factor 2.5 x ounces of beer
+```
 
+where
+
+```
 1 fl oz = 29.5735ml
+```
 
-# From fg and og
+### From Specific Gravity
 
-## From alcohol
+We calculate the amount of calories from alcohol and also from carbohydrates
 
-1881.22 _ Final_Gravity _ (Original_Gravity – Final_Gravity)/(1.775 – Original_Gravity)
+```
+TotalCalories = CaloriesFromAlcohol + CaloriesFromCarbs
+```
 
-## From carbs
+where
 
-3550 _ Final_Gravity _ ((0.1808 _ Original_Gravity) + (0.8192 _ Final_Gravity) – 1.0004)
+```
+CaloriesFromAcolhol = 1881.22 * Final_Gravity * (Original_Gravity – Final_Gravity)/(1.775 – Original_Gravity)
+```
 
-## Total
+and
 
-from alcohol + from carbs
+```
+CaloriesFromCarbs = 3550 * Final_Gravity * ((0.1808 * Original_Gravity) + (0.8192 * Final_Gravity) – 1.0004)
+```
+
+### Estimating ABV from Specific Gravity
+
+We can also estimate the abv given the specific gravity's.
+
+The "basic" formula is
+
+```
+ABV = (Original_Gravity - Final_Gravity) * 131.25
+```
+
+The more accurate formula (especially for higher ABV beers) is
+
+```
+ABV = (76.08 * (Original_Gravity-Final_Gravity) / (1.775-Original_Gravity)) * (Final_Gravity / 0.794)
+```
